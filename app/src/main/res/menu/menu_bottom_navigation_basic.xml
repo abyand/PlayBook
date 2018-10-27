@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/events"
+        android:icon="@mipmap/temp"
+        android:title="Events" />
+
+    <item
+        android:id="@+id/venue"
+        android:icon="@mipmap/temp"
+        android:title="Venue" />
+
+    <item
+        android:id="@+id/profil"
+        android:icon="@mipmap/temp"
+        android:title="Profil" />
+
+    <item
+        android:id="@+id/setting"
+        android:icon="@mipmap/temp"
+        android:title="Setting" />
+
+</menu>
