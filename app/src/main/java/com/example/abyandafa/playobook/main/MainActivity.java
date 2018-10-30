@@ -1,14 +1,24 @@
 package com.example.abyandafa.playobook.main;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.ColorRes;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
@@ -18,9 +28,12 @@ import com.example.abyandafa.playobook.R;
 import com.example.abyandafa.playobook.main.fragments.event.EventFragment;
 import com.example.abyandafa.playobook.main.fragments.ProfilFragment;
 import com.example.abyandafa.playobook.main.fragments.SettingFragment;
-import com.example.abyandafa.playobook.main.fragments.VenueFragment;
+import com.example.abyandafa.playobook.main.fragments.venue.VenueFragment;
 import com.example.abyandafa.playobook.main.navigation.BottomBarAdapter;
 import com.example.abyandafa.playobook.main.navigation.NoSwipePager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final int PROFILE = 2;
     private final int SETTINGS = 3;
 
-
+    List<String> list = new ArrayList<>();
     private Toolbar toolbar;
     private NoSwipePager viewPager;
     private AHBottomNavigation bottomNavigation;
@@ -46,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        setAllRegion();
 
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -61,6 +74,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         createFakeNotification();
 
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Coming soon", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         addBottomNavigationItems();
         bottomNavigation.setCurrentItem(0);
 
@@ -71,8 +93,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                fragment.updateColor(ContextCompat.getColor(MainActivity.this, colors[position]));
 
                 if (!wasSelected)
+                {
                     viewPager.setCurrentItem(position);
-                Toast.makeText(MainActivity.this, "ini posisi ke" + position, Toast.LENGTH_SHORT).show();
+
+                }
                 // remove notification badge
                 int lastItemPos = bottomNavigation.getItemsCount() - 1;
                 if (notificationVisible && position == lastItemPos)
@@ -89,6 +113,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void customToolbar(int lastItemPos) {
+        if(lastItemPos==0)
+            toolbar.inflateMenu(R.menu.event_menu);
+//        else if(lastItemPos==1)
+//            toolbar.inflateMenu(R.menu.venue_menu);
+//        else if(lastItemPos==2)
+//            toolbar.inflateMenu(R.menu.profil_menu);
+//        else if(lastItemPos==3)
+//            toolbar.inflateMenu(R.menu.setting_menu);
     }
 
     private void setupViewPager() {
@@ -105,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void setupBottomNavBehaviors() {
-//        bottomNavigation.setBehaviorTranslationEnabled(false);
+        bottomNavigation.setBehaviorTranslationEnabled(false);
 
         /*
         Before enabling this. Change MainActivity theme to MyTheme.TranslucentNavigation in
@@ -168,8 +200,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void addBottomNavigationItems() {
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.event, R.mipmap.temp, colors[0]);
         AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.venue, R.mipmap.temp, colors[1]);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.profile, R.mipmap.temp, colors[2]);
-        AHBottomNavigationItem item4 = new AHBottomNavigationItem(R.string.settings, R.mipmap.temp, colors[3]);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.profile, R.mipmap.ic_profil_nav, colors[2]);
+        AHBottomNavigationItem item4 = new AHBottomNavigationItem(R.string.settings, R.mipmap.ic_setting_nav, colors[3]);
 
         bottomNavigation.addItem(item1);
         bottomNavigation.addItem(item2);
@@ -179,6 +211,92 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.event_filter:
+                showFilterDialog();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void showFilterDialog(){
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView = getLayoutInflater().inflate(R.layout.filter_dialog, null);
+
+        Button apply =  mView.findViewById(R.id.apply);
+        Button reset =  mView.findViewById(R.id.reset);
+        mBuilder.setView(mView);
+        final AlertDialog dialog = mBuilder.create();
+
+
+        dialog.show();
+        dialog.setCancelable(false);
+        apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        final CharSequence[] options = list.toArray(new CharSequence[list.size()]);
+
+        final TextView location = mView.findViewById(R.id.location);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setSingleChoiceItems(options, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                location.setText(options[which]);
+            }
+        });
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                builder.show();
+            }
+        });
+    }
+
+    public void onRadioButtonClicked(View view) {
+
+    }
+
+    public void setAllRegion(){
+
+        list.add("All Location");
+        list.add("Asemrowo");
+        list.add("Benowo");
+        list.add("Bubutan");
+        list.add("Bulak");
+        list.add("Dukuh Pakis");
+        list.add("Gayungan");
+        list.add("Genteng");
+        list.add("Gubeng");
+        list.add("Gunung Anyar");
+        list.add("Kenjeran");
+        list.add("Mulyorejo");
+        list.add("Rungkut");
+        list.add("Sawahan");
+        list.add("Sukolilo");
+        list.add("Tambaksari");
+        list.add("Tandes");
+        list.add("Tegalsari");
+        list.add("Wonocolo");
+        list.add("Wonokromo");
 
     }
 }

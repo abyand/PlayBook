@@ -1,13 +1,17 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_200"
     tools:context="com.example.abyandafa.playobook.main.fragments.SettingFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="COMING SOON"
+        android:layout_centerInParent="true"
+        android:textColor="@color/blue_500"
+        android:textSize="40sp"/>
 
-</FrameLayout>
+</RelativeLayout>

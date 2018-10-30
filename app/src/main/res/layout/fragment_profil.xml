@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/grey_200"
     tools:context="com.example.abyandafa.playobook.main.fragments.ProfilFragment">
 
 
@@ -10,7 +11,7 @@
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:layout_gravity="center"
-        android:src="@mipmap/temp"/>
+        android:src="@mipmap/ic_person_profil"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,7 +37,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/temp"/>
+                    android:src="@mipmap/ic_call_profil"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -52,7 +53,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/temp"/>
+                    android:src="@mipmap/ic_mail_profil"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -68,7 +69,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/temp"/>
+                    android:src="@mipmap/ic_wallet_profil"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -79,7 +80,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/temp"/>
+                    android:src="@mipmap/ic_top_up_profil"/>
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

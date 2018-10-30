@@ -21,12 +21,12 @@
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:src="@mipmap/temp"/>
+        android:src="@mipmap/ic_call_detail"/>
     <ImageView
         android:id="@+id/message"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:src="@mipmap/temp"/>
+        android:src="@mipmap/ic_chat_detail"/>
 
 </LinearLayout>

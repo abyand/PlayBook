@@ -10,6 +10,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -53,10 +55,17 @@ public class EventFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_event, container, false);
+        setHasOptionsMenu(true);
         Log.d("mage its", "onCreateView: ");
         tabLayout = v.findViewById(R.id.tabs);
         viewPager = v.findViewById(R.id.viewpager);
         return v;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.event_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
