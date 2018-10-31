@@ -25,6 +25,7 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.aurelhubert.ahbottomnavigation.notification.AHNotification;
 import com.example.abyandafa.playobook.R;
+import com.example.abyandafa.playobook.main.create.CreateEventActivity;
 import com.example.abyandafa.playobook.main.fragments.event.EventFragment;
 import com.example.abyandafa.playobook.main.fragments.ProfilFragment;
 import com.example.abyandafa.playobook.main.fragments.SettingFragment;
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Coming soon", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, CreateEventActivity.class));
             }
         });
 
@@ -269,6 +270,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 builder.show();
             }
         });
+
+        
     }
 
     public void onRadioButtonClicked(View view) {

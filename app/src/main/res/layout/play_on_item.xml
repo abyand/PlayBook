@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginLeft="16dp"
     android:orientation="horizontal">
 
     <android.support.v7.widget.CardView
@@ -28,7 +31,8 @@
                     android:textColor="@color/green_500"
                     android:paddingRight="8dp"/>
                 <ImageView
-                    android:layout_width="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="70dp"
                     android:layout_height="100dp"
                     android:src="@mipmap/temp"/>
             </LinearLayout>
@@ -60,6 +64,7 @@
                             android:layout_height="20dp"
                             android:src="@mipmap/ic_pin_item"/>
                         <TextView
+                            android:textSize="10sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -74,6 +79,7 @@
                             android:layout_height="20dp"
                             android:src="@mipmap/ic_date_item"/>
                         <TextView
+                            android:textSize="10sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -89,6 +95,7 @@
                             android:layout_height="20dp"
                             android:src="@mipmap/ic_time_item"/>
                         <TextView
+                            android:textSize="10sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -103,6 +110,7 @@
                             android:layout_height="20dp"
                             android:src="@mipmap/ic_people_item"/>
                         <TextView
+                            android:textSize="10sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -128,7 +136,8 @@
                     android:textColor="@color/green_500"
                     android:paddingRight="8dp"/>
                 <ImageView
-                    android:layout_width="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="70dp"
                     android:layout_height="100dp"
                     android:src="@mipmap/temp"
                     />
